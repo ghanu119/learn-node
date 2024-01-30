@@ -10,3 +10,12 @@ NodeJS tutorial and practice
 - **module**: All the information about the current file or module
 - **process**: Information about the current environment where program is being executed
 
+# Built In Modules
+
+## OS ( Operating System )
+
+## PATH
+
+## FS ( File System )
+
+## HTTP
