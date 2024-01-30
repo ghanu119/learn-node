@@ -2,10 +2,14 @@ const fs = require('fs');
 
 console.log('Before');
 
-const intro = fs.readFile( './basics/intro.js', 'utf-8', ( d, intro ) => {
-    console.log('File content', intro);
+fs.readFile( './basics/intro.js', 'utf-8', ( err, intro ) => {
+
+    console.log('-----------');
+    console.log('Async File content', intro);
 });
 
-console.log('After');
+const fileContent = fs.readFileSync( './basics/intro.js', 'utf-8', );
 
-console.log( intro);
+console.log( fileContent );
+
+console.log('After');
