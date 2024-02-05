@@ -19,3 +19,13 @@ NodeJS tutorial and practice
 ## FS ( File System )
 
 ## HTTP
+
+
+# HTML theme setup in node
+# Admin Dashboard in node
+# Admin Login register forgot password
+# Mysql Database connection
+
+
+# Async Server
+- If there is a async code inside the server request then it may effect to the other users, too.
