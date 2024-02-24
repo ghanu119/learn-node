@@ -1,7 +1,20 @@
 const express = require('express');
 const server = express();
-const { readFileSync } = require('fs');
 
+const jsonData = [
+    {
+        id: 1,
+        name: 'John Doe'
+    },
+    {
+        id: 2,
+        name: 'Jane Doe'
+    },
+    {
+        id: 3,
+        name: 'Joe Doe'
+    }
+]
 server.use( '/assets',express.static( __dirname + '/assets'));
 
 server.listen( 5000, () => {
@@ -11,22 +24,25 @@ server.listen( 5000, () => {
 server.use('/', express.static(__dirname + '/') );
 
 server.get('/api/data', (req,res) => {
-    const data = [
-        {
-            id: 1,
-            name: 'John Doe'
-        },
-        {
-            id: 2,
-            name: 'Jane Doe'
-        },
-        {
-            id: 3,
-            name: 'Joe Doe'
-        }
-    ]
-    res.json( data );
+    res.json( jsonData );
 });
+
+server.get('/api/data/:id', ( req, res ) => {
+    const id = req.params.id;
+    if( id ){
+        const record = jsonData.find( ( d ) => d.id == id );
+        if( record ){
+            res.json( record );
+
+        }else{
+            res.status( 404 ).json([]);
+
+        }
+    }else{
+        res.status( 404 ).json([]);
+    }
+
+})
 // server.all('/api/*', (req,res) => {
 //     const data = {
 //         message: 'No Data found.'
