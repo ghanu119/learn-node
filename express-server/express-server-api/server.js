@@ -24,7 +24,13 @@ server.listen( 5000, () => {
 server.use('/', express.static(__dirname + '/') );
 
 server.get('/api/data', (req,res) => {
-    res.json( jsonData );
+    const queryParam = req.query;
+    let data = jsonData;
+    if( queryParam.search ){
+        const searchParam = queryParam.search;
+        data = jsonData.filter( d => d.name.includes( searchParam ) ); 
+    }
+    res.json( data );
 });
 
 server.get('/api/data/:id', ( req, res ) => {
@@ -35,7 +41,7 @@ server.get('/api/data/:id', ( req, res ) => {
             res.json( record );
 
         }else{
-            res.status( 404 ).json([]);
+            res.status( 404 ).json('invalid request.');
 
         }
     }else{
